@@ -12,7 +12,8 @@ log = logging.getLogger('WebhookStructs')
 
 from . import config
 
-import urllib.parse
+import urllib
+
 from Crypto.Cipher import Blowfish #pip3 install pycrypto
 from base64 import b64encode, b64decode
 def blowfishEncrypt(Key, GPS):
@@ -85,7 +86,7 @@ class RocketMap:
             'size': 'unknown',
             'gmaps': get_gmaps_link(lat, lng),
             'applemaps': get_applemaps_link(lat, lng),
-            'deeplink': config['DEEPLINK']+urllib.parse.urlencode({'z': blowfishEncrypt(config['ENCRYPTION'], data['latitude']+", "+data['longitude'])})
+            'deeplink': config['DEEPLINK']+urllib.urlencode({'z': blowfishEncrypt(config['ENCRYPTION'], data['latitude']+", "+data['longitude'])})
         }
         if pkmn['atk'] != '?' or pkmn['def'] != '?' or pkmn['sta'] != '?':
             pkmn['iv'] = float(((pkmn['atk'] + pkmn['def'] + pkmn['sta']) * 100) / float(45))
