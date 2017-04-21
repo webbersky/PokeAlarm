@@ -115,8 +115,8 @@ class DiscordAlarm(Alarm):
                     'content': replace(alert['body'], info),
                     'thumbnail': {'url': replace(alert['icon_url'], info)}
                 }
-        if alert['map'] is not None:
-            payload['embeds'][0]['image'] = {'url': replace(alert['map'], {'lat': info['lat'], 'lng': info['lng']})}
+        #if alert['map'] is not None:
+        #    payload['embeds'][0]['image'] = {'url': replace(alert['map'], {'lat': info['lat'], 'lng': info['lng']})}
         args = {
             'url': alert['webhook_url'],
             'payload': payload
