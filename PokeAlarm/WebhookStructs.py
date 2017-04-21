@@ -12,6 +12,7 @@ log = logging.getLogger('WebhookStructs')
 
 from . import config
 
+import urllib.parse
 from Crypto.Cipher import Blowfish #pip3 install pycrypto
 from base64 import b64encode, b64decode
 def blowfishEncrypt(Key, GPS):
