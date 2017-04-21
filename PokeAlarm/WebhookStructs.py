@@ -91,6 +91,7 @@ class RocketMap:
             'cp_multiplier': float(data['cp_multiplier']),
             'deeplink': config['DEEPLINK']+urllib.urlencode({'z': blowfishEncrypt(config['ENCRYPTION'], str(data['latitude'])[:11]+", "+str(data['longitude'])[:11])})
         }
+        print(pkmn)
         if pkmn['atk'] != '?' or pkmn['def'] != '?' or pkmn['sta'] != '?':
             pkmn['iv'] = float(((pkmn['atk'] + pkmn['def'] + pkmn['sta']) * 100) / float(45))
         else:
