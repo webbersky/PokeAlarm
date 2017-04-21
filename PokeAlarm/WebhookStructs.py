@@ -17,9 +17,10 @@ import urllib
 from Crypto.Cipher import Blowfish #pip3 install pycrypto
 from base64 import b64encode, b64decode
 def blowfishEncrypt(EncryptionKey, GPS):
-    passw = bytes(EncryptionKey, "UTF-8")
+    #passw = bytes(EncryptionKey, "UTF-8")
+    passw = EncryptionKey
     GPS = GPS.ljust(24)
-    GPS = bytes(GPS, "UTF-8")
+    #GPS = bytes(GPS, "UTF-8")
     cipher=Blowfish.new(passw, Blowfish.MODE_ECB)
     encStr=b64encode(cipher.encrypt(GPS))
     return encStr
