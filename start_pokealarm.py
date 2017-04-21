@@ -89,6 +89,7 @@ def start_server():
 
     # Start up Server
     log.info("PokeAlarm is listening for webhooks on: http://{}:{}".format(config['HOST'], config['PORT']))
+    log.info("Encryption: {}".format(config['ENCRYPTION']))
     server = wsgi.WSGIServer((config['HOST'], config['PORT']), app, log=logging.getLogger('pyswgi'))
     server.serve_forever()
 
@@ -144,6 +145,8 @@ def parse_settings(root_path):
     config['HOST'] = args.host
     config['PORT'] = args.port
     config['DEBUG'] = args.debug
+    
+    config['ENCRYPTION'] = args.encryption
 
     # Check to make sure that the same number of arguements are included
     for list_ in [args.key, args.filters, args.alarms, args.geofences, args.location,
