@@ -90,6 +90,7 @@ def start_server():
     # Start up Server
     log.info("PokeAlarm is listening for webhooks on: http://{}:{}".format(config['HOST'], config['PORT']))
     log.info("Encryption: {}".format(config['ENCRYPTION']))
+    log.info("Deeplink: {}".format(config['DEEPLINK']))
     server = wsgi.WSGIServer((config['HOST'], config['PORT']), app, log=logging.getLogger('pyswgi'))
     server.serve_forever()
 
@@ -134,6 +135,8 @@ def parse_settings(root_path):
                         help='Timezone used for notifications.  Ex: "America/Los_Angeles"')
     parser.add_argument('-e', '--encryption', type=parse_unicode, default=None,
                         help='Specify a Encryption key to use')
+    parser.add_argument('-dl', '--deeplink', type=parse_unicode, default=None,
+                        help='Specify a Deeplink URL to use')
 
     args = parser.parse_args()
 
@@ -149,6 +152,7 @@ def parse_settings(root_path):
     config['DEBUG'] = args.debug
     
     config['ENCRYPTION'] = args.encryption
+    config['DEEPLINK'] = args.deeplink
 
     # Check to make sure that the same number of arguements are included
     for list_ in [args.key, args.filters, args.alarms, args.geofences, args.location,
