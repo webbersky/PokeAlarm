@@ -21,7 +21,7 @@ def blowfishEncrypt(EncryptionKey, GPS):
     passw = EncryptionKey
     print(passw)
     GPS = GPS.ljust(24)
-    print(GPS)
+    print(GPS+".")
     #GPS = bytes(GPS, "UTF-8")
     cipher=Blowfish.new(passw, Blowfish.MODE_ECB)
     encStr=b64encode(cipher.encrypt(GPS))
