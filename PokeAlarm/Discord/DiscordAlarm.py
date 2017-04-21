@@ -99,6 +99,7 @@ class DiscordAlarm(Alarm):
     # Send Alert to Discord
     def send_alert(self, alert, info):
         log.debug("Attempting to send notification to Discord.")
+        '''
         payload = {
             'username': replace(alert['username'], info),
             'embeds': [{
@@ -108,6 +109,12 @@ class DiscordAlarm(Alarm):
                 'thumbnail': {'url': replace(alert['icon_url'], info)}
             }]
         }
+        '''
+        payload: {
+                    'username': replace(alert['username'], info),
+                    'content': replace(alert['body'], info),
+                    'thumbnail': {'url': replace(alert['icon_url'], info)}
+                }
         if alert['map'] is not None:
             payload['embeds'][0]['image'] = {'url': replace(alert['map'], {'lat': info['lat'], 'lng': info['lng']})}
         args = {
