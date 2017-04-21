@@ -19,7 +19,9 @@ from base64 import b64encode, b64decode
 def blowfishEncrypt(EncryptionKey, GPS):
     #passw = bytes(EncryptionKey, "UTF-8")
     passw = EncryptionKey
+    print(passw)
     GPS = GPS.ljust(24)
+    print(GPS)
     #GPS = bytes(GPS, "UTF-8")
     cipher=Blowfish.new(passw, Blowfish.MODE_ECB)
     encStr=b64encode(cipher.encrypt(GPS))
