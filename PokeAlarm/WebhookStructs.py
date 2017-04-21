@@ -87,6 +87,8 @@ class RocketMap:
             'size': 'unknown',
             'gmaps': get_gmaps_link(lat, lng),
             'applemaps': get_applemaps_link(lat, lng),
+            'cp': int(data['cp']),
+            'cp_multiplier': float(data['cp_multiplier']),
             'deeplink': config['DEEPLINK']+urllib.urlencode({'z': blowfishEncrypt(config['ENCRYPTION'], str(data['latitude'])[:11]+", "+str(data['longitude'])[:11])})
         }
         if pkmn['atk'] != '?' or pkmn['def'] != '?' or pkmn['sta'] != '?':
