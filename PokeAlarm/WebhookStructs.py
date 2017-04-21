@@ -9,6 +9,15 @@ from Utils import get_gmaps_link, get_move_damage, get_move_dps, get_move_durati
 
 log = logging.getLogger('WebhookStructs')
 
+from Crypto.Cipher import Blowfish #pip3 install pycrypto
+from base64 import b64encode, b64decode
+def blowfishEncrypt(Key, GPS):
+    passw = bytes(Key, "UTF-8")
+	GPS = GPS.ljust(24)
+	GPS = bytes(GPS, "UTF-8")
+	cipher=Blowfish.new(passw, Blowfish.MODE_ECB)
+	encStr=b64encode(cipher.encrypt(GPS))
+	return encStr
 
 ################################################## Webhook Standards  ##################################################
 
@@ -71,7 +80,8 @@ class RocketMap:
             'gender': get_pokemon_gender(check_for_none(int, data.get('gender'), '?')),
             'size': 'unknown',
             'gmaps': get_gmaps_link(lat, lng),
-            'applemaps': get_applemaps_link(lat, lng)
+            'applemaps': get_applemaps_link(lat, lng),
+            'deeplink': config['DEEPLINK']+urllib.parse.urlencode({'z': blowfishEncrypt(config['ENCRYPTION'], data['latitude']+", "+data['longitude'])})
         }
         if pkmn['atk'] != '?' or pkmn['def'] != '?' or pkmn['sta'] != '?':
             pkmn['iv'] = float(((pkmn['atk'] + pkmn['def'] + pkmn['sta']) * 100) / float(45))
