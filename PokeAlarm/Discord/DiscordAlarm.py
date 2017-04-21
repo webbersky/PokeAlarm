@@ -110,7 +110,7 @@ class DiscordAlarm(Alarm):
             }]
         }
         '''
-        payload: {
+        payload = {
                     'username': replace(alert['username'], info),
                     'content': replace(alert['body'], info),
                     'thumbnail': {'url': replace(alert['icon_url'], info)}
