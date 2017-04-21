@@ -24,3 +24,4 @@
 #timezone:                                      # Timezone used for notifications Ex: 'America/Los_Angeles' or '[America/Los_Angeles, America/New_York]'
 
 #encryption:										#Encryption key for URL Links
+#deeplink:										#URL Link
