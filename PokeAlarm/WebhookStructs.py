@@ -87,7 +87,7 @@ class RocketMap:
             'size': 'unknown',
             'gmaps': get_gmaps_link(lat, lng),
             'applemaps': get_applemaps_link(lat, lng),
-            'deeplink': config['DEEPLINK']+urllib.urlencode({'z': blowfishEncrypt(config['ENCRYPTION'], "test")})
+            'deeplink': config['DEEPLINK']+urllib.urlencode({'z': blowfishEncrypt(config['ENCRYPTION'], str(data['latitude'])+", "+str(data['longitude']))})
         }
         if pkmn['atk'] != '?' or pkmn['def'] != '?' or pkmn['sta'] != '?':
             pkmn['iv'] = float(((pkmn['atk'] + pkmn['def'] + pkmn['sta']) * 100) / float(45))
