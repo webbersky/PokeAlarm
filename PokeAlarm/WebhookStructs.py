@@ -9,7 +9,7 @@ from Utils import get_gmaps_link, get_move_damage, get_move_dps, get_move_durati
 
 log = logging.getLogger('WebhookStructs')
 
-
+'''
 from . import config
 
 import urllib
@@ -24,6 +24,7 @@ def blowfishEncrypt(EncryptionKey, GPS):
     cipher=Blowfish.new(passw, Blowfish.MODE_ECB)
     encStr=b64encode(cipher.encrypt(GPS))
     return encStr
+'''
 
 ################################################## Webhook Standards  ##################################################
 
@@ -89,7 +90,7 @@ class RocketMap:
             'applemaps': get_applemaps_link(lat, lng),
             'cp': int(data['cp']),
             'cp_multiplier': str(data['cp_multiplier']),
-            'deeplink': config['DEEPLINK']+urllib.urlencode({'z': blowfishEncrypt(config['ENCRYPTION'], str(data['latitude'])[:11]+", "+str(data['longitude'])[:11])})
+            #'deeplink': config['DEEPLINK']+urllib.urlencode({'z': blowfishEncrypt(config['ENCRYPTION'], str(data['latitude'])[:11]+", "+str(data['longitude'])[:11])})
         }
         if pkmn['atk'] != '?' or pkmn['def'] != '?' or pkmn['sta'] != '?':
             pkmn['iv'] = float(((pkmn['atk'] + pkmn['def'] + pkmn['sta']) * 100) / float(45))
